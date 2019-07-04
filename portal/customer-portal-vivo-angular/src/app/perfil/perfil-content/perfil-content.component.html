@@ -1,0 +1,290 @@
+<div class="form-register">
+  <form>
+    <div>
+
+      <br>
+
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="Dados cadastrais" disabled>
+      </mat-form-field>
+
+      <br>
+
+      <mat-radio-group [(ngModel)]="user.documentType" name="userDocumentType" required>
+        <mat-radio-button value="Cpf" class="bt-radio">Pessoa Física</mat-radio-button>
+        <mat-radio-button value="Cnpj">Pessoa Jurídica</mat-radio-button>
+      </mat-radio-group>
+
+      <br>
+      <br>
+
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="CPF/CNPJ:" [(ngModel)]="user.documentValue" name="userDocumentValue" minlength="11" maxlength="14"
+          required>
+        <mat-hint>Entre com o CNPJ ou seu CPF</mat-hint>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="Nome completo:" [(ngModel)]="user.name" name="userName" (keypress)="onRemoveSpecialCharacterAndNumber(user)"
+          (change)="onRemoveSpecialCharacterAndNumber(user)" maxlength="100" required>
+      </mat-form-field>
+
+    </div>
+
+    <div>
+
+      <div *ngFor="let address of user.addresses; let index">
+
+        <mat-form-field class="input-display-unic" *ngIf="user.addresses.length > 1">
+          <input matInput placeholder="Novo endereço" disabled>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <mat-select placeholder="Tipo de Endereço:" [(ngModel)]="address.addressType" name="addressType" required [ngModelOptions]="{standalone: true}">
+            <div *ngFor="let addressTypeT of listAddressType">
+              <mat-option [(value)]="addressTypeT.id">{{addressTypeT.value}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <input matInput placeholder="CEP:" [(ngModel)]="address.zipCode" name="zipCode" (keypress)="onInputOnliNumber(address)" (change)="onInputOnliNumber(address)"
+            pattern="[0-9]*" maxlength="8" required [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-min">
+          <mat-select placeholder="Tipo de Logradouro:" [(ngModel)]="address.roadType" name="addressRoadType" maxlength="50" required
+            [ngModelOptions]="{standalone: true}">
+            <div *ngFor="let roadType of listRoadType">
+              <mat-option [(value)]="roadType.id">{{roadType.value}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input-display">
+          <input matInput placeholder="Logradouro:" [(ngModel)]="address.streetName" name="addressStreetName" maxlength="200" required
+            [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <input matInput placeholder="Bairro:" [(ngModel)]="address.neighborhood" name="addressNeighborhood" maxlength="200" required
+            [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-min">
+          <input matInput placeholder="Número:" [(ngModel)]="address.streetNumber" name="addressStreetNumber" type="text" required
+            [ngModelOptions]="{standalone: true}" (keypress)="onInputOnliNumber(address)" (change)="onInputOnliNumber(address)" maxlength="9">
+        </mat-form-field>
+
+        <mat-form-field class="input-display">
+          <input matInput placeholder="Complemento:" [(ngModel)]="address.complement" name="addressComplement" maxlength="50" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display">
+          <input matInput placeholder="Cidade:" [(ngModel)]="address.city" name="addressCity" maxlength="100" required [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <mat-form-field class="input-display-min">
+          <input matInput placeholder="Estado:" class="form-estado" [(ngModel)]="address.province" name="addressProvince" maxlength="2"
+            required [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <input matInput placeholder="País:" [(ngModel)]="address.country" name="addressCountry" maxlength="30" required [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+      </div>
+
+      <div>
+
+        <button mat-button primary color="primary" (click)="onAddAddress(user.addresses)">
+          <mat-icon>add</mat-icon>
+          Add Endereço
+        </button>
+
+        <button mat-button warn color="warn" (click)="onRemoveAddress(user.addresses)" *ngIf="user.addresses.length > 1">
+          <mat-icon>remove</mat-icon>
+          Remover Endereço
+        </button>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div>
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="Informações para contato" disabled>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="E-mail:" [(ngModel)]="user.email" name="userEmail" [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+          required>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor entre com um e-mail válido.
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          O campo e-mail é
+          <strong>necessário</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <br>
+
+      <div *ngFor="let phone of user.phones">
+
+        <mat-form-field class="input-display-unic">
+          <input matInput placeholder="Telefone" disabled>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display">
+          <mat-select placeholder="Tipo:" [(value)]="selected" [(ngModel)]="phone.phoneType" name="phoneType" [ngModelOptions]="{standalone: true}"
+            required>
+            <div *ngFor="let phoneType of listPhoneType">
+              <mat-option [(value)]="phoneType.id"> {{phoneType.value}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input-display-min">
+          <input matInput placeholder="Código do País:" type="text" maxlength="2" [(ngModel)]="phone.countryCode" (keypress)="onInputOnliNumberToPhone(phone)"
+            (change)="onInputOnliNumberToPhone(phone)" name="countryCode" max="2" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-min">
+          <input matInput placeholder="DDD:" type="text" [(ngModel)]="phone.areaCode" (keypress)="onInputOnliNumberToPhone(phone)" (change)="onInputOnliNumberToPhone(phone)"
+            name="areaCode" maxlength="3" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+
+        <mat-form-field class="input-display">
+          <input matInput placeholder="Número do telefone:" type="text" [(ngModel)]="phone.phoneNumber" (keypress)="onInputOnliNumberToPhone(phone)"
+            (change)="onInputOnliNumberToPhone(phone)" name="phoneNumber" maxlength="9" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+
+      </div>
+
+      <div>
+
+        <button mat-button primary color="primary" (click)="onAddPhone(user.phones)">
+          <mat-icon>add</mat-icon>
+          Add Telefone
+        </button>
+
+        <button mat-button warn color="warn" (click)="onRemovePhone(user.phones)" *ngIf="user.phones.length > 1">
+          <mat-icon>remove</mat-icon>
+          Remover Telefone
+        </button>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="user.id == 0 || user.id == null">
+      <mat-form-field class="input-display-unic">
+        <input matInput type="password" placeholder="Senha" maxlength="10" required [(ngModel)]="user.password" name="userPassword">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="input-display-unic">
+        <input matInput type="password" placeholder="Confirmar Senha" maxlength="10" required [(ngModel)]="user.confirmPassword"
+          name="userConfirmPassword">
+      </mat-form-field>
+    </div>
+
+    <br>
+
+    <div *ngIf="!changePassword && user.id != 0 && user.id != null">
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="Troca de Senha" disabled>
+      </mat-form-field>
+
+      <br>
+
+      <button mat-button primary color="primary" (click)="onShowChangePassword()">
+        <mat-icon>vpn_key</mat-icon>
+        Trocar Senha
+      </button>
+    </div>
+
+    <div *ngIf="changePassword">
+
+      <div>
+        <mat-form-field class="input-display-unic">
+          <input matInput type="password" placeholder="Antiga Senha" maxlength="10" required [(ngModel)]="oldPasswordConfirm" name="oldPasswordConfirm">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <input matInput type="password" placeholder="Nova Senha" maxlength="10" required [(ngModel)]="newPassword" name="newPassword">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input-display-unic">
+          <input matInput type="password" placeholder="Confirmar Nova Senha" maxlength="10" required [(ngModel)]="newPasswordConfirm"
+            name="newPasswordConfirm">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button warn color="warn" (click)="cancelChangePassword()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+        <button mat-button primay color="primary" (click)="onChangePassword()">
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
+
+    </div>
+
+    <br>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <mat-divider></mat-divider>
+
+    <mat-toolbar>
+      <div class="card-actions">
+
+        <button mat-button warn color="warn" (click)="onCancelRegister()">
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button mat-button primary color="primary" (click)="onSaveUser(user)">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+
+  </form>
+</div>

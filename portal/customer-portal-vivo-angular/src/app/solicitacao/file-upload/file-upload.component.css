@@ -1,0 +1,21 @@
+.documents-title{
+    list-style-type: none;
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.documents-item {
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.img-digitaldocument-preview {
+    width: 80px; 
+    height: 80px;
+}
+
+.img-codument-countainer {
+    max-width: 200px;
+    word-wrap: inherit;
+    overflow: auto;
+}

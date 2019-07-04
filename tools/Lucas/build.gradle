@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'br.com.lcc'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	compile project (':lcc-rest-client')
+	compile project (':lcc-rest-server')
+	compile project (':lcc-rest-dto')
+	
+	compile project (':lcc-core-facade')
+	compile project (':lcc-core-rules')
+	compile project (':lcc-core-domain')
+	
+	compile project (':lcc-repository-jpa')
+	compile project (':lcc-repository-entity')
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+    repositories {
+    	mavenCentral()
+        jcenter()
+    }
+    
+    compileJava {
+    	options.fork = true
+    	options.incremental = true
+	}
+}

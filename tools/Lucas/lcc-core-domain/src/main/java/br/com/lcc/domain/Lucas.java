@@ -1,0 +1,16 @@
+package br.com.lcc.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@Getter
+@Builder
+@EqualsAndHashCode
+@ToString
+public class Lucas {
+
+}

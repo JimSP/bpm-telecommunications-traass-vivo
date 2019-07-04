@@ -1,0 +1,54 @@
+<div *ngIf="mensagem.tipo == 'success'" class="msg-master">
+  <div class="msg-success mgs-global">
+    <mat-toolbar class="msg-success">
+      <mat-icon>done</mat-icon>
+      <mat-label class="msg-text-position">{{mensagem.msg}}</mat-label>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="onCloseMessage()" >close</mat-icon>
+    </mat-toolbar>
+  </div>
+</div>
+
+<div *ngIf="mensagem.tipo == 'error'" class="msg-master">
+  <div class="msg-error mgs-global">
+    <mat-toolbar class="msg-error">
+      <mat-icon>cancel</mat-icon>
+      <mat-label class="msg-text-position">{{mensagem.msg}}</mat-label>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="onCloseMessage()" >close</mat-icon>
+    </mat-toolbar>
+  </div>
+</div>
+
+<div *ngIf="mensagem.tipo == 'warning'" class="msg-master">
+  <div class="msg-warning mgs-global">
+    <mat-toolbar class="msg-warning">
+      <mat-icon>warning</mat-icon>
+      <mat-label class="msg-text-position">{{mensagem.msg}}</mat-label>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="onCloseMessage()" >close</mat-icon>
+    </mat-toolbar>
+  </div>
+</div>
+
+<div *ngIf="mensagem.tipo == 'info'" class="msg-master">
+  <div class="msg-info mgs-global">
+    <mat-toolbar class="msg-info">
+      <mat-icon>info</mat-icon>
+      <mat-label class="msg-text-position">{{mensagem.msg}}</mat-label>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" (click)="onCloseMessage()" >close</mat-icon>
+    </mat-toolbar>
+  </div>
+</div>
+
+
+<!-- <mat-form-field>
+    <input matInput value="Disco party!" placeholder="Message" #message>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input matInput value="Dance" placeholder="Action" #action>
+  </mat-form-field>
+  
+  <button mat-button (click)="openSnackBar(message.value, action.value)">Show snack-bar</button> -->

@@ -1,0 +1,50 @@
+<div layout="row" class="template-hearder">
+  <div class="space-header"></div>
+  <div flex>
+    <a class="brand-logo left" >
+      <img class="logo-principal" src="./../assets/img/vivo-logo-1.png" alt="">
+    </a>
+
+    <div color="primary" class="componet-menu-principal" *ngIf="userLoggedIn.id > null" >
+
+      <button mat-button [matMenuTriggerFor]="menuCreate" class="button-menu">
+        <mat-icon>account_circle</mat-icon>
+        <mat-label>{{userLoggedIn.name}}</mat-label>
+      </button>
+      <mat-menu #menuCreate="matMenu">
+          <!-- [routerLink]="['/myProfileTab', 1, userLoggedIn.id]" -->
+        <button mat-menu-item primary color="primay" (click)="onRouteTopPage('/myProfileTab', 1, userLoggedIn.id)" >
+          <mat-icon class="icon-button-menu">portrait</mat-icon>
+          Meu perfil
+        </button>
+      </mat-menu>
+
+      <button mat-raised-button primary color="primary" [matMenuTriggerFor]="menu" class="button-menu">
+        <mat-icon class="icon-button-menu">menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <!-- <button mat-menu-item primary color="primay" routerLink="/home">
+          <mat-icon class="icon-button-menu">home</mat-icon>
+          Home
+        </button> -->
+        <button mat-menu-item primary color="primay" [routerLink]="['/solicitacao', userLoggedIn.id]">
+          <mat-icon class="icon-button-menu">perm_data_setting</mat-icon>
+          Solicitações
+        </button>
+        <!-- <button mat-menu-item primary color="primay" routerLink="/home">
+          <mat-icon class="icon-button-menu">playlist_add_check</mat-icon>
+          Status das Solicitaçoes
+        </button> -->
+        <button mat-menu-item primary color="primay" [routerLink]="['/pageAbout', userLoggedIn.id]">
+          <mat-icon class="icon-button-menu">info</mat-icon>
+          Sobre o Sistema
+        </button>
+        <button mat-menu-item primary color="primay" (click)="onLogout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>

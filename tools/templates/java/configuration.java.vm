@@ -1,0 +1,33 @@
+package ${packageName}.configuration;
+
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import ${packageName}.domain.${domainClass};
+import ${packageName}.dto.${domainClass}ResponseDto;
+
+@Configuration
+public class RestConfiguration {
+
+	@Bean
+	public ModelMapper modelMapper() {
+
+		final ModelMapper modelMapper = new ModelMapper();
+		modelMapper //
+				.addMappings(domainMap());
+
+		return modelMapper;
+	}
+
+	private PropertyMap<${domainClass}, ${domainClass}ResponseDto> domainMap() {
+		return new PropertyMap<${domainClass}, ${domainClass}ResponseDto>() {
+
+			@Override
+			protected void configure() {
+				//this.destination = new ${domainClass}ResponseDto(this.source.getId());
+			}
+		};
+	}
+}

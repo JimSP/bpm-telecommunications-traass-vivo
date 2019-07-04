@@ -1,0 +1,75 @@
+<div>
+  <!-- <button mat-button primay color="primay" (click)="addAttachedItem()">
+    <mat-icon>add</mat-icon>
+  </button> -->
+
+</div>
+
+<div>
+  <mat-form-field class="input-display-unic">
+    <mat-select placeholder="Tipo de documento:" [(value)]="selected" [(ngModel)]="digitalDocument.documentType" name="documentType" [disabled]="disabledSolicitationEdit">
+      <mat-option value="CARTA DEVOLUCAO">Carta de devolução</mat-option>
+      <mat-option value="CPF CEDENTE">CPF Cedente</mat-option>
+      <mat-option value="CPF CESSIONARIO">CPF Cessionário</mat-option>
+      <mat-option value="CPF PROCURADOR">CPF Procurador</mat-option>
+      <mat-option value="FORMULÁRIO TRANSFERÊNCIA ASSINATURA">Formulário de Transferência de Assinatura</mat-option>
+      <mat-option value="PROCURACAO">Procuração</mat-option>
+      <mat-option value="RG CEDENTE">RG Cedente</mat-option>
+      <mat-option value="RG CESSIONARIO">RG Cessionário</mat-option>
+      <mat-option value="RG PROCURADOR">RG Procurador</mat-option>
+      <mat-option value="OUTROS">Outros</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input type="file" accept="image/*" (change)="changeListener($event)" *ngIf="digitalDocument.documentType != null" >
+
+</div>
+
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile [colspan]="gridContentSteps.cols" [rowspan]="gridContentSteps.rows" [style.background]="gridContentSteps.color">
+    <div *ngFor="let img of listDigitalDocument">
+      <br>
+      <mat-card class="img-codument-countainer">
+        <mat-card-header>
+          <mat-card-title>{{img.documentType}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{img.url}}" class="img-digitaldocument-preview" *ngIf="img.url != null && img.url != undefined">
+        <img mat-card-image src="data:image/jpeg;base64,{{img.data}}"  class="img-digitaldocument-preview" *ngIf="img.data != null && img.data != undefined">
+        <mat-card-actions> 
+          <button mat-button warn color="warn" (click)="removeAttachedItem(img)" [disabled]="disabledSolicitationEdit">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- <div *ngFor="let item of listDigitalDocument">
+    Documento Anexado: {{item.documentType}}
+    <button mat-button primay color="primay" (click)="removeAttachedItem(item)" *ngIf="listDigitalDocument.length > 1">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div> -->
+
+<!-- <div >
+  <div *ngFor="let document of solicitation.digitalDocuments">
+    <div>
+      Nome: {{document.referenceName}} Tipo: {{document.documentType}}
+      <button mat-button primay color="primay" (click)="removeAttachedEditItem(document)" *ngIf="solicitation.digitalDocuments != null && solicitation.digitalDocuments.length != 0">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+  </div>
+</div> -->
+
+
+<br>
+<button mat-raised-button (click)="openDialog()">
+  Lista de documentos obrigatórios
+  <mat-icon>help</mat-icon>
+</button>
+
+
+
+
+<br>

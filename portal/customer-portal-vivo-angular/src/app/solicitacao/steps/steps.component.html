@@ -1,0 +1,36 @@
+<div *ngIf="index > 0">
+  <mat-toolbar>
+    <div class="title-header">
+      <h1>Acompanhamento de Status</h1>
+    </div>
+  </mat-toolbar>
+  <mat-card>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile [colspan]="gridContentSteps.cols" [rowspan]="index + 1" [style.background]="gridContentSteps.color">
+        <div>
+
+          <form>
+            <mat-vertical-stepper [linear]="isLinear" [selectedIndex]="index" #stepper>
+              <mat-step [stepControl]="firstFormGroup" *ngFor="let step of stepDto.listSteps">
+                <ng-template matStepLabel let-index="index">{{getSolicitationStatusLabel(step.title)}}</ng-template>
+                <div>
+                  {{step.info}}
+                </div>
+              </mat-step>
+            </mat-vertical-stepper>
+          </form>
+
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <br>
+
+  <button mat-button primary color="primary" (click)="onPreviewPage()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    Voltar
+  </button>
+
+  <br>
+  <br>
+</div>

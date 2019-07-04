@@ -1,0 +1,17 @@
+rootProject.name = '${projectPrefix}-soluction'
+
+include ':commum-rest-dto'
+include ':commum-converter-rest-dto'
+include ':${projectPrefix}-rest-client'
+include ':${projectPrefix}-rest-server'
+include ':${projectPrefix}-rest-dto'
+
+include ':${projectPrefix}-core-facade'
+include ':${projectPrefix}-core-rules'
+include ':commum-domain'
+include ':${projectPrefix}-core-domain'
+
+include ':commum-repository-jpa'
+include':commum-entity'
+include ':${projectPrefix}-repository-jpa'
+include ':${projectPrefix}-repository-entity'

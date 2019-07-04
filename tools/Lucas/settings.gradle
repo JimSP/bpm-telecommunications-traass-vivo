@@ -1,0 +1,12 @@
+rootProject.name = 'lcc-soluction'
+
+include ':lcc-rest-client'
+include ':lcc-rest-server'
+include ':lcc-rest-dto'
+
+include ':lcc-core-facade'
+include ':lcc-core-rules'
+include ':lcc-core-domain'
+
+include ':lcc-repository-jpa'
+include ':lcc-repository-entity'

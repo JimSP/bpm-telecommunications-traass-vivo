@@ -1,0 +1,54 @@
+<menu-principal [userLoggedIn]="userLoggedIn"></menu-principal>
+<div id="tudo body-contet">
+
+    <div>
+  
+      <div id="tudo2" class="filter-border">
+  
+        <div class="card-login">
+  
+          <div class="card-login-header">
+            <h1>
+              Informações Sobre o Sistema
+            </h1>
+
+            <br>
+            <br>
+
+            <h2>Projeto Vivo TRAASS</h2>
+            <label>versão {{version}}, Data da versão: {{versionDate}}</label>
+          </div>
+  
+          <br>
+          <br>
+  
+          <div class="card-login-content">
+  
+  
+            <mat-card >
+              <img class="logo-abaut" src="./../assets/img/vivo-logo-1.png" alt="">
+              <br> 
+              <br>
+              
+              
+            </mat-card>
+  
+            <br>
+            <br>
+  
+            <div class="card-log-actions">
+              <button mat-button primary color="primary" (click)="onPreviewPage()">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+                Voltar
+              </button>
+            </div>
+  
+            <br>
+            <br>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>

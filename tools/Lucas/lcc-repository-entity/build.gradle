@@ -1,0 +1,25 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+    	classpath "net.ltgt.gradle:gradle-apt-plugin:0.13"
+        classpath 'io.franzbecker:gradle-lombok:1.6'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "net.ltgt.apt-eclipse"
+apply plugin: 'java-library'
+apply plugin: 'io.franzbecker.gradle-lombok'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version: '1.0.1.Final'
+	compileOnly 'org.projectlombok:lombok:+'
+	apt 'org.projectlombok:lombok:+'
+}

@@ -1,0 +1,33 @@
+<menu-principal [userLoggedIn]="userLoggedIn"></menu-principal>
+<mensagem-sistem [mensagem]="globalMensagem" ></mensagem-sistem>
+<div class="form-register" (userLoggedIn)="userLoggedInEmitterMaster($event)">
+
+  <mat-tab-group class="tab-perfil" [selectedIndex]="tabSelected" (selectedTabChange)="onTabClick($event)" #tabSolicitation>
+
+    <mat-tab label="Novo" disabled>
+      <mat-toolbar>
+        <ng-template mat-tab-label>
+          <mat-icon>note_add</mat-icon>
+        </ng-template>
+        <div class="title-header">
+          <h1>Novo Cadastro</h1>
+        </div>
+      </mat-toolbar>
+      <perfil-content (mensagemEmitter)="mensagemEmitter($event)" (userLoggedIn)="userLoggedInEmitter($event)"></perfil-content>
+    </mat-tab>
+
+    <mat-tab label="Editar" disabled>
+      <ng-template mat-tab-label>
+        <mat-icon>edit</mat-icon>
+      </ng-template>
+      <mat-toolbar>
+        <div class="title-header">
+          <h1>Editar Perfil</h1>
+        </div>
+      </mat-toolbar>
+      <perfil-content (mensagemEmitter)="mensagemEmitter($event)" (userLoggedIn)="userLoggedInEmitter($event)"></perfil-content>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

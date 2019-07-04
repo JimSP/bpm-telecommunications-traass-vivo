@@ -1,0 +1,50 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = '${packageName}'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+
+	compile project (':commum-rest-dto')
+	compile project (':commum-converter-rest-dto')
+	compile project (':${projectPrefix}-rest-client')
+	compile project (':${projectPrefix}-rest-server')
+	compile project (':${projectPrefix}-rest-dto')
+	
+	compile project (':${projectPrefix}-core-facade')
+	compile project (':${projectPrefix}-core-rules')
+	compile project (':commum-domain')
+	compile project (':${projectPrefix}-core-domain')
+	
+	compile project (':commum-repository-jpa')
+	compile project (':commum-entity')
+	compile project (':${projectPrefix}-repository-jpa')
+	compile project (':${projectPrefix}-repository-entity')
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+    repositories {
+    	mavenCentral()
+        jcenter()
+    }
+    
+    compileJava {
+    	options.fork = true
+    	options.incremental = true
+	}
+}

@@ -1,0 +1,38 @@
+<!-- <div >
+    <mat-dialog-content style="z-index: 99999999; position: relative;">
+
+        <!-- <div [class.loader-hidden]="!show">
+        <div class="loader-overlay">
+          <div>
+            <mat-progress-bar color="accent" mode="indeterminate" *ngIf="show"></mat-progress-bar>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile [colspan]="gridContentSteps.cols" [rowspan]="gridContentSteps.rows" [style.background]="gridContentSteps.color">
+            <div [class.loader-hidden]="!show" fxLayoutAlign="center center">
+              <div>
+                <mat-spinner color="accent" mode="indeterminate" *ngIf="show"></mat-spinner>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      
+      </mat-dialog-content>
+</div> -->
+
+<div [class.loader-hidden]="!show" fxLayoutAlign="center center" class="loader" >
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="gridContentSteps.cols" [rowspan]="gridContentSteps.rows" [style.background]="gridContentSteps.color">
+      <div>
+        <mat-spinner color="purple" mode="indeterminate" *ngIf="show"></mat-spinner>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

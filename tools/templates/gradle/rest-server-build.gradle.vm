@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "se.transmode.gradle:gradle-docker:1.2"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+
+group = '$packageName'
+version = '0.0.1'
+
+dependencies {
+	runtime('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	
+	compile project (':${projectPrefix}-rest-dto')
+	compile project (':${projectPrefix}-core-facade')
+	
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.0.0'
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task buildDocker(type: Docker) {
+	baseImage = 'develar/java:latest'
+	push = project.hasProperty('push')
+	tag = 'interfale/${projectPrefix}-rest-server'
+	addFile {
+		from jar
+		rename {'app.jar'}
+  }
+  entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+  exposePort(8080)
+}
+
+buildDocker.dependsOn(build)

@@ -1,0 +1,18 @@
+package ${packageName}.converter;
+
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+@Component
+public class ${sourceClass}To${destinationClass}Converter implements Converter<${sourceClass}, ${destinationClass}> {
+
+	@Override
+	public ${destinationClass} convert(final ${sourceClass} source) {
+		Assert.notNull(source, "source is not null.");
+
+		return {destinationClass} //
+				.builder() //
+				.build();
+	}
+}

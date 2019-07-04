@@ -1,0 +1,466 @@
+<div class="form-register">
+
+  <mat-accordion>
+
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CEDENTE
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form>
+      
+        <div>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="Nome completo:" maxlength="100" [(ngModel)]="solicitation.donnorName" (keypress)="onRemoveSpecialCharacterAndNukber(solicitation)"
+              (change)="onRemoveSpecialCharacterAndNukber(solicitation)" name="donnorName" required [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-radio-group [(ngModel)]="solicitation.donnorDocumentType" name="donnorDocumentType" [disabled]="disabledSolicitationEdit">
+            <mat-radio-button value="Cpf" class="bt-radio">Pessoa Física</mat-radio-button>
+            <mat-radio-button value="Cnpj">Pessoa Jurídica</mat-radio-button>
+          </mat-radio-group>
+
+          <br>
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="CPF/CNPJ:" [(ngModel)]="solicitation.donnorDocumentValue" name="donnorDocumentValue" minlength="11"
+              maxlength="14" required [disabled]="disabledSolicitationEdit">
+            <mat-hint>Entre com o CNPJ ou seu CPF</mat-hint>
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="RG:" [(ngModel)]="solicitation.donnorRg" name="donnorRg" minlength="5" maxlength="9" required
+              [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="E-mail:" [(ngModel)]="solicitation.donnorEmail" name="donnorEmail" maxlength="100" disabled>
+          </mat-form-field>
+
+          <br>
+
+          <div>
+
+            <mat-form-field class="input-display-unic">
+              <mat-select placeholder="Tipo:" [(value)]="selected" [(ngModel)]="solicitation.donnorPhone.phoneType" name="donnorPhonePhoneType"
+                disabled>
+                <div *ngFor="let phoneType of listPhoneType">
+                  <mat-option [(value)]="phoneType.id"> {{phoneType.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Código do País:" type="text" [(ngModel)]="solicitation.donnorPhone.countryCode" (keypress)="onInputOnliNumberToPhone(solicitation.donnorPhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.donnorPhone)" name="donnorPhoneCountryCode" maxlength="2" required [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="DDD:" type="text" [(ngModel)]="solicitation.donnorPhone.areaCode" (keypress)="onInputOnliNumberToPhone(solicitation.donnorPhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.donnorPhone)" name="donnorPhoneAreaCode" maxlength="3" required [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="Número do telefone:" type="text" [(ngModel)]="solicitation.donnorPhone.phoneNumber" (keypress)="onMaxLengthPhoneNumber(solicitation.donnorPhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.donnorPhone)" name="donnorPhonePhoneNumber" maxlength="9" [ngModelOptions]="{standalone: true}"
+                required [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+          </div>
+
+          <br>
+
+          <div *ngFor="let address of solicitation.donnorAddresses">
+
+            <mat-form-field class="input-display-unic">
+              <mat-select placeholder="Tipo de Endereço:" [(ngModel)]="address.addressType" name="donnorAddressType" disabled [ngModelOptions]="{standalone: true}">
+                <div *ngFor="let addressTypeT of listAddressType">
+                  <mat-option [(value)]="addressTypeT.id">{{addressTypeT.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="CEP:" [(ngModel)]="address.zipCode" name="donnorZipCode" (keypress)="onInputOnliNumberAddress(address)"
+                (change)="onInputOnliNumberAddress(address)" maxlength="8" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-min">
+              <mat-select placeholder="Tipo de Logradouro:" [(ngModel)]="address.roadType" name="donnorAddressRoadType" maxlength="50"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+                <div *ngFor="let roadType of listRoadType">
+                  <mat-option [(value)]="roadType.id">{{roadType.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Logradouro:" [(ngModel)]="address.streetName" name="donnorAddressStreetName" maxlength="200"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="Bairro:" [(ngModel)]="address.neighborhood" name="donnorAddressNeighborhood" maxlength="200"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="Número:" [(ngModel)]="address.streetNumber" name="adonnorAddressStreetNumber" type="text" 
+               (keypress)="onInputOnliNumberAddress(address)" (change)="onInputOnliNumberAddress(address)" maxlength="9"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Complemento:" [(ngModel)]="address.complement" name="donnorAddressComplement" maxlength="50"
+                [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Cidade:" [(ngModel)]="address.city" name="donnorAddressCity" maxlength="100" required [ngModelOptions]="{standalone: true}"
+                [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="Estado:" class="form-estado" [(ngModel)]="address.province" name="donnorAddressProvince" maxlength="2"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="País:" [(ngModel)]="address.country" name="donnorAddressCountry" maxlength="30" required [ngModelOptions]="{standalone: true}"
+                [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+          </div>
+
+        </div>
+      </form>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CESSIONÁRIO
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form>
+
+        <div>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="Nome completo:" [(ngModel)]="solicitation.transfereeName" name="solicitationTransfereeName"
+              (keypress)="onRemoveSpecialCharacterAndNukber(solicitation)" (change)="onRemoveSpecialCharacterAndNukber(solicitation)"
+              maxlength="100" required [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-radio-group [(ngModel)]="solicitation.transfereeDocumentType" name="transfereeDocumentType" [disabled]="disabledSolicitationEdit">
+            <mat-radio-button value="Cpf" class="bt-radio">Pessoa Física</mat-radio-button>
+            <mat-radio-button value="Cnpj">Pessoa Jurídica</mat-radio-button>
+          </mat-radio-group>
+
+          <br>
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="CPF/CNPJ:" [(ngModel)]="solicitation.transfereeDocumentValue" name="transfereeDocumentValue"
+              minlength="11" maxlength="14" required [disabled]="disabledSolicitationEdit">
+            <mat-hint>Entre com o CNPJ ou seu CPF</mat-hint>
+          </mat-form-field>
+
+          <br>
+          <br>
+
+          <!-- <mat-form-field class="input-display-unic">
+            <input matInput placeholder="RG:" [(ngModel)]="solicitation.rg" name="solicitationRg" minlength="11" maxlength="11" required>
+          </mat-form-field>
+
+          <br> -->
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="E-mail:" [(ngModel)]="solicitation.transfereeEmail" name="transfereeEmail" maxlength="100" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <div>
+
+            <mat-form-field class="input-display-unic">
+              <mat-select placeholder="Tipo:" [(value)]="selected" [(ngModel)]="solicitation.transfereePhone.phoneType" name="transfereePhonePhoneType"
+                disabled>
+                <div *ngFor="let phoneType of listPhoneType">
+                  <mat-option [(value)]="phoneType.id"> {{phoneType.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Código do País:" type="number" [(ngModel)]="solicitation.transfereePhone.countryCode" (keypress)="onInputOnliNumberToPhone(solicitation.transfereePhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.transfereePhone)" name="transfereePhoneCountryCode" maxlength="2" required
+                [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="DDD:" type="text" [(ngModel)]="solicitation.transfereePhone.areaCode" (keypress)="onInputOnliNumberToPhone(solicitation.transfereePhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.transfereePhone)" name="transfereePhoneAreaCode" maxlength="3" required
+                [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="Número do telefone:" type="text" [(ngModel)]="solicitation.transfereePhone.phoneNumber" (keypress)="onInputOnliNumberToPhone(solicitation.transfereePhone)"
+                (change)="onInputOnliNumberToPhone(solicitation.transfereePhone)" name="transfereePhonePhoneNumber" maxlength="9" [ngModelOptions]="{standalone: true}"
+                required [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+          </div>
+
+          <br>
+
+          <div *ngFor="let address of solicitation.transfereeAddresses">
+
+            <mat-form-field class="input-display-unic">
+              <mat-select placeholder="Tipo de Endereço:" [(ngModel)]="address.addressType" name="transfereeAddressType" disabled [ngModelOptions]="{standalone: true}">
+                <div *ngFor="let addressTypeT of listAddressType">
+                  <mat-option [(value)]="addressTypeT.id">{{addressTypeT.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="CEP:" [(ngModel)]="address.zipCode" name="transfereeZipCode" (keypress)="onInputOnliNumberAddress(address)"
+                (change)="onInputOnliNumberAddress(address)" maxlength="8" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-min">
+              <mat-select placeholder="Tipo de Logradouro:" [(ngModel)]="address.roadType" name="transfereeAddressRoadType" maxlength="50"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+                <div *ngFor="let roadType of listRoadType">
+                  <mat-option [(value)]="roadType.id">{{roadType.value}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Logradouro:" [(ngModel)]="address.streetName" name="transfereeAddressStreetName" maxlength="200"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="Bairro:" [(ngModel)]="address.neighborhood" name="transfereeAddressNeighborhood" maxlength="200"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="Número:" [(ngModel)]="address.streetNumber" name="transfereeAddressStreetNumber" type="text"
+                (keypress)="onInputOnliNumberAddress(address)" (change)="onInputOnliNumberAddress(address)" maxlength="9"
+                required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Complemento:" [(ngModel)]="address.complement" name="transfereeAddressComplement" maxlength="50"
+                [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display">
+              <input matInput placeholder="Cidade:" [(ngModel)]="address.city" name="transfereeAddressCity" maxlength="100" required [ngModelOptions]="{standalone: true}"
+                [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <mat-form-field class="input-display-min">
+              <input matInput placeholder="Estado:" class="form-estado" [(ngModel)]="address.province" name="transfereeAddressProvince"
+                maxlength="2" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input-display-unic">
+              <input matInput placeholder="País:" [(ngModel)]="address.country" name="transfereeAddressCountry" maxlength="30" required
+                [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+            </mat-form-field>
+
+          </div>
+        </div>
+      </form>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          MUNDANÇA DE ENDEREÇO
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form>
+        <div>
+
+          <mat-form-field class="input-display-unic">
+            <mat-select placeholder="Tipo de Endereço:" [(ngModel)]="solicitation.solicitationAddress.addressType" name="solicitationAddressType"
+              disabled [ngModelOptions]="{standalone: true}">
+              <div *ngFor="let addressTypeT of listAddressType">
+                <mat-option [(value)]="addressTypeT.id">{{addressTypeT.value}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="CEP:" [(ngModel)]="solicitation.solicitationAddress.zipCode" name="solicitationZipCode" maxlength="8"
+              (keypress)="onInputOnliNumber(address)" (change)="onInputOnliNumber(address)" required [ngModelOptions]="{standalone: true}"
+              [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-min">
+            <mat-select placeholder="Tipo de Logradouro:" [(ngModel)]="solicitation.solicitationAddress.roadType" name="solicitationAddressRoadType"
+              maxlength="50" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+              <div *ngFor="let roadType of listRoadType">
+                <mat-option [(value)]="roadType.id">{{roadType.value}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="input-display">
+            <input matInput placeholder="Logradouro:" [(ngModel)]="solicitation.solicitationAddress.streetName" name="solicitationAddressStreetName"
+              maxlength="200" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="Bairro:" [(ngModel)]="solicitation.solicitationAddress.neighborhood" name="solicitationAddressNeighborhood"
+              maxlength="200" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-min">
+            <input matInput placeholder="Número:" [(ngModel)]="solicitation.solicitationAddress.streetNumber" name="solicitationAddressStreetNumber"
+              type="number" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <mat-form-field class="input-display">
+            <input matInput placeholder="Complemento:" [(ngModel)]="solicitation.solicitationAddress.complement" name="solicitationAddressComplement"
+              maxlength="50" [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display">
+            <input matInput placeholder="Cidade:" [(ngModel)]="solicitation.solicitationAddress.city" name="solicitationAddressCity"
+              maxlength="100" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <mat-form-field class="input-display-min">
+            <input matInput placeholder="Estado:" class="form-estado" [(ngModel)]="solicitation.solicitationAddress.province" name="solicitationAddressProvince"
+              maxlength="2" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field class="input-display-unic">
+            <input matInput placeholder="País:" [(ngModel)]="solicitation.solicitationAddress.country" name="solicitationAddressCountry"
+              maxlength="30" required [ngModelOptions]="{standalone: true}" [disabled]="disabledSolicitationEdit">
+          </mat-form-field>
+
+        </div>
+      </form>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ANEXAR DOCUMENTOS
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div>
+        <file-upload [digitalDocument]="digitalDocument" [solicitationId]="solicitationId" [listDigitalDocument]="solicitation.digitalDocuments"
+          [disabledSolicitationEdit]="disabledSolicitationEdit" (listDigitalDocumentEmitter)="listDigitalDocumentEmitter($event)"
+          (mensagemEmitter)="messgeReceiver($event)"></file-upload>
+      </div>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Fim</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+
+<mat-toolbar>
+  <div class="card-actions">
+
+
+
+    <button mat-button primary color="primary" disabled (click)="disabledSolicitationEdit = !disabledSolicitationEdit">
+      <mat-icon>print</mat-icon>
+    </button>
+
+    <!-- <button mat-button primary color="warn" [disabled]="btDeleteDisabled">
+      <mat-icon>delete</mat-icon>
+    </button> -->
+
+    <button mat-button warn color="warn" (click)="onCancelSolicitation()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+
+    <button mat-button primary color="primary" (click)="saveSolicitacao(solicitation)">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

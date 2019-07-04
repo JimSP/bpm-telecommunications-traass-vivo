@@ -1,0 +1,60 @@
+#tudo {
+	width: 100%;
+	height: 500px;
+	/* background-color: orange; */
+}
+
+#tudo2 {
+	position: relative;
+	/* width: 30%; */
+	height: 100%;
+    /* background: linear-gradient(to right, rgba(232, 205, 248, 0.541) , rgba(246, 232, 255, 0.548)); */
+    background-color: white;
+	float: left;
+}
+
+.filter-border{
+    float: right;
+    width: 100%;
+}
+
+
+.img{
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.logo-abaut{
+    width: 180px;
+    height: 100px;
+}
+
+.error-authenticate{
+    color: red;
+}
+
+.success-authenticate{
+    color: green;
+}
+
+.card-login-header{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.card-login-content{
+    text-align: center;
+}
+
+.card-log-actions{
+    text-align: center;
+}
+
+.input-display-login{
+    width: 30%;
+}
+
+.login-links{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}

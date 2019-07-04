@@ -1,0 +1,58 @@
+<div id="tudo body-contet">
+
+  <div>
+
+    <div id="tudo2" class="filter-border">
+
+      <div class="card-login">
+
+        <div class="card-login-header">
+          <h1>
+            Autenticação de E-mail
+          </h1>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="card-login-content">
+
+
+          <mat-card *ngIf="autenticate" >
+            <img src="./../assets/img/E-mail_check.png" alt="">
+            <br> 
+            <label class="success-authenticate">E-mail foi autenticado com sucesso!</label>
+            
+          </mat-card>
+
+   
+          <mat-card *ngIf="!autenticate">
+            <img src="./../assets/img/Error_e-mail_check.png" alt="">
+            <br> 
+            <label class="error-authenticate">Erro ao autenticar o e-mail!</label>
+          </mat-card>
+
+
+          <br>
+          <br>
+
+          <div class="card-log-actions">
+            <button mat-button primary color="primary" routerLink="/login">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+              Voltar
+            </button>
+            <!-- <button mat-button primary color="primary" (click)="autenticate = !autenticate">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+              trocar
+            </button> -->
+          </div>
+
+          <br>
+          <br>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

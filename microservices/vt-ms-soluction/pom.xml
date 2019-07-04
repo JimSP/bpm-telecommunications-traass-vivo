@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+	</parent>
+
+	<groupId>br.com.interfile.vivo.traass</groupId>
+	<artifactId>vt-ms-soluction</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<modules>
+		<module>vt-commum-ms-rest-dto</module>
+		<module>vt-commum-ms-rest-dto-converter</module>
+		<module>vt-commum-ms-core-domain</module>
+		<module>vt-commum-ms-repository-entity</module>
+		<module>vt-commum-ms-repository-jpa</module>
+		<module>vt-user-ms-rest-client</module>
+		<module>vt-user-ms-rest-server</module>
+		<module>vt-user-ms-rest-dto</module>
+		<module>vt-user-ms-core-facade</module>
+		<module>vt-user-ms-core-rules</module>
+		<module>vt-user-ms-core-domain</module>
+		<module>vt-user-ms-repository-jpa</module>
+		<module>vt-user-ms-rest-converter</module>
+		<module>vt-solicitation-ms-rest-dto</module>
+		<module>vt-solicitation-ms-rest-server</module>
+		<module>vt-solicitation-ms-rest-client</module>
+		<module>vt-solicitation-ms-core-facade</module>
+		<module>vt-solicitation-ms-core-rules</module>
+		<module>vt-solicitation-ms-core-domain</module>
+		<module>vt-solicitation-ms-repository-jpa</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				</plugin>
+		</plugins>
+	</build>
+</project>

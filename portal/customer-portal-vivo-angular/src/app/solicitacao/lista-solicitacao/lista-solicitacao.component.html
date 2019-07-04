@@ -1,0 +1,79 @@
+<div>
+  <mat-toolbar>
+    <form>
+      <mat-form-field class="input-display-unic">
+        <input matInput placeholder="Pesquisa:" [(ngModel)]="searchSolicitation" (change)="applyFilter(searchSolicitation)" name="searchSolicitation"
+          maxlength="100">
+      </mat-form-field>
+
+      <button mat-button [matMenuTriggerFor]="menuSearch">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menuSearch="matMenu">
+        <button mat-menu-item primary color="primay" (click)="applyFilter(searchSolicitation)">
+          <mat-icon class="icon-button-menu">search</mat-icon>
+          Pesquisar
+        </button>
+        <button mat-menu-item primary color="primay" (click)="cleanFiler()">
+          <mat-icon class="icon-button-menu">keyboard_backspace</mat-icon>
+          Limpar
+        </button>
+      </mat-menu>
+    </form>
+  </mat-toolbar>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Solicitation Id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID: </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Donnor Name -->
+    <ng-container matColumnDef="donnorName">
+      <th mat-header-cell *matHeaderCellDef> Nome do Cedente: </th>
+      <td mat-cell *matCellDef="let element"> {{element.donnorName}} </td>
+    </ng-container>
+
+    <!-- Transfree Name -->
+    <ng-container matColumnDef="transfereeName">
+      <th mat-header-cell *matHeaderCellDef> Nome do Cessionário: </th>
+      <td mat-cell *matCellDef="let element"> {{element.transfereeName}}</td>
+    </ng-container>
+
+    <!-- Chennel Reception -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status da Solicitação: </th>
+      <td mat-cell *matCellDef="let element"> {{getSolicitationStatusLabel(element.solicitationStatus)}} </td>
+    </ng-container>
+
+    <!-- Actions Editors -->
+    <ng-container matColumnDef="actionsEditors">
+      <th mat-header-cell *matHeaderCellDef> Ações: </th>
+      <td mat-cell *matCellDef="let element">
+
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item primary color="primay" (click)="editSolicitation(element)">
+            <mat-icon class="icon-button-menu">edit</mat-icon>
+            Editar
+          </button>
+          <button mat-menu-item primary color="primay" (click)="stepsSolicitation(element)">
+            <mat-icon class="icon-button-menu">timeline</mat-icon>
+            Status
+          </button>
+        </mat-menu>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* You can add global styles to this file, and also import other style files */
+/* @import "../node_modules/bootstrap/dist/css/bootstrap.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body{
+    margin: 0px;
+    background: linear-gradient(to right, rgb(235, 235, 235) , rgb(240, 240, 240));
+}
+
+.body-content{
+    min-height: calc(100vh - 60px);
+}
+
+.template-hearder{
+    padding: 0px 0px 0px 0px;
+    background-color: white;
+    /* background: linear-gradient(to right, rgb(46, 175, 68) , rgb(149, 231, 128)); */
+    height: 52px;
+}
+
+.logo-principal{ 
+    margin-top: 2px;
+    margin-left: 5px;
+    float: left;
+    height: 35px;
+    width: 85px;
+}
+
+.form-cadastro{
+    margin-left: 10%;
+}
+
+.componet-menu-principal{
+    float: right;
+    height: 52px;
+}
+
+.space-header{
+    background-color: rgb(85, 26, 139);
+    height: 2px;
+}
+
+.button-menu{
+    font-family: sans-serif;
+    height: 50px;
+}
+
+.icon-button-menu{
+    margin-bottom: 8px;
+}
+
+.example-header-image {
+    background-size: cover;
+}
+
+.div-total-size{
+    width: 100%;
+}
+
+.div-float-right{
+float: right;
+}
+
+.div-float-left{
+    float: left;
+}
+
+.input-display-unic{
+    max-width: 610px;
+    min-width: 200px;
+    width: 95%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.input-display{
+    max-width: 400px;
+    min-width: 200px;
+    width: 60%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.input-display-min{
+    max-width: 200px;
+    min-width: 100px;
+    width: 30%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.form-register{
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+.title-header{
+    width: 100%; 
+    text-align: center;
+}
+
+.card-actions{
+    width: 100%;
+    text-align: center;
+}

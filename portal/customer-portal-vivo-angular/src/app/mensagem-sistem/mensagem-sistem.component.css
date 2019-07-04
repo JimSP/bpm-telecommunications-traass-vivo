@@ -1,0 +1,68 @@
+.example-icon {
+    padding: 0 14px;
+}
+  
+.example-spacer {
+    flex: 1 1 auto;
+}
+.position-msg{
+    float: right;
+}
+
+.msg-master{
+    border: solid 0.5px;
+    font-family: sans-serif;
+}
+
+.mgs-global{
+    position: absolute;
+    width: 100%;
+    z-index: 99999;
+}
+
+.msg-text-position{
+    float: right;
+    margin-left: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* max-width: 400px; */
+}
+
+.msg-success{
+    border: solid 0.5px;
+    font-family: sans-serif;
+    border-radius: 10px; 
+    color : rgb(54, 139, 46);
+    border-color: rgb(44, 216, 58);
+    background-color: rgb(183, 250, 181);
+}
+
+.msg-error{
+      border: solid 0.5px;
+    font-family: sans-serif;
+    border: solid 0.5px;
+    font-family: sans-serif;
+    border-radius: 10px; 
+    color : rgb(139, 49, 46);
+    border-color: rgb(216, 50, 44);
+    background-color: rgb(250, 181, 181);
+}
+
+.msg-warning{
+    border: solid 0.5px;
+    font-family: sans-serif;
+    border-radius: 10px; 
+    color : rgb(139, 137, 46);
+    border-color: rgb(216, 213, 44);
+    background-color: rgb(249, 250, 181);
+}
+
+.msg-info{
+    border: solid 0.5px;
+    font-family: sans-serif;
+    border-radius: 10px; 
+    color : rgb(46, 79, 139);
+    border-color: rgb(44, 113, 216);
+    background-color: rgb(181, 225, 250);
+}

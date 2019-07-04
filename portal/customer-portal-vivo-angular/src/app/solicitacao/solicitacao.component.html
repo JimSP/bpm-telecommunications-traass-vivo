@@ -1,0 +1,61 @@
+<menu-principal [userLoggedIn]="userLoggedIn"></menu-principal>
+<mensagem-sistem [mensagem]="globalMensagem"></mensagem-sistem>
+<div class="form-register" (userLoggedIn)="userLoggedInEmitter($event)">
+
+  <mat-tab-group class="tab-solicitation" [selectedIndex]="tabSelected" (selectedTabChange)="onTabClick($event)" #tabSolicitation>
+
+    <mat-tab label="Solicitações">
+      <ng-template mat-tab-label>
+        <mat-icon>list</mat-icon>
+      </ng-template>
+      <mat-toolbar>
+        <div class="title-header">
+          <h1>Lista de Solicitações</h1>
+        </div>
+      </mat-toolbar>
+      <lista-solicitacao (mensagemEmitter)="mensagemEmitter($event)" (tabSelectedEmmiter)="tabSelectedEmitter($event)"
+        (solicitationEditEmitter)="solicitationEditReceiver($event)" (disabledSolicitationEditEmitter)="disabledSolicitationEditReceiber($event)"
+        (stepDtoEmitter)="stepDtoReceiver($event)">
+      </lista-solicitacao>
+    </mat-tab>
+
+    <mat-tab label="Nova Solicitação">
+      <mat-toolbar>
+        <ng-template mat-tab-label>
+          <mat-icon>note_add</mat-icon>
+        </ng-template>
+        <div class="title-header">
+          <h1>Nova Solicitação</h1>
+        </div>
+      </mat-toolbar>
+      <nova-solicitacao [btDeleteDisabled]="btDeleteDisabled" [disabledSolicitationEdit]="disabledSolicitationEdit" 
+        [listDigitalDocument]="listDigitalDocument" (mensagemEmitter)="mensagemEmitter($event)"
+        (tabSelectedEmmiter)="tabSelectedEmitter($event)">
+      </nova-solicitacao>
+    </mat-tab>
+
+    <mat-tab label="Editar" disabled>
+      <ng-template mat-tab-label>
+        <mat-icon>edit</mat-icon>
+      </ng-template>
+      <mat-toolbar>
+        <div class="title-header">
+          <h1>Editar Solicitação</h1>
+        </div>
+      </mat-toolbar>
+      <nova-solicitacao [btDeleteDisabled]="btDeleteDisabled" [solicitation]="solicitation" [disabledSolicitationEdit]="disabledSolicitationEdit" 
+        [solicitationId]="solicitationId" (mensagemEmitter)="mensagemEmitter($event)"
+        (tabSelectedEmmiter)="tabSelectedEmitter($event)">
+      </nova-solicitacao>
+    </mat-tab>
+
+    <mat-tab label="Acompanhamento" disabled>
+      <ng-template mat-tab-label>
+        <mat-icon>timeline</mat-icon>
+      </ng-template>
+      <steps [stepDto]="stepDto" [index]="index" (tabSelectedEmmiter)="tabSelectedEmitter($event)"></steps>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

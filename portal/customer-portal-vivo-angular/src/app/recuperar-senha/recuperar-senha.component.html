@@ -1,0 +1,60 @@
+<menu-principal [userLoggedIn]="userLoggedIn"> </menu-principal>
+<mensagem-sistem [mensagem]="globalMensagem"></mensagem-sistem>
+<div id="tudo body-contet">
+
+  <div>
+
+    <div id="tudo2" class="filter-border">
+
+      <div class="card-login">
+
+        <div class="card-login-header">
+          <h1>
+            Recuperação de Senha
+          </h1>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="card-login-content">
+          <form>
+            <mat-form-field class="input-display-login">
+              <input matInput placeholder="E-mail" maxlength="100" name="userAuthEmail" [(ngModel)]="recoveryEmail.email" required>
+            </mat-form-field>
+
+            <br>
+            <br>
+
+            <div class="card-log-actions">
+              <button mat-button primary color="primary" routerLink="/login" >
+                <mat-icon>keyboard_arrow_left</mat-icon>
+              </button>
+              <button mat-raised-button primary color="primary" (click)="onRecoveryPassword()">
+                <mat-icon>sender</mat-icon>
+              </button>
+            </div>
+
+            <br>
+            <br>
+
+          </form>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <br>
+
+        <div class="login-links">
+          <a>
+            <h4>Entre com seu e-mail cadastrado, para recuperar sua senha.</h4>
+          </a>
+        </div>
+
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</div>

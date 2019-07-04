@@ -1,0 +1,67 @@
+
+<menu-principal [userLoggedIn]="userLoggedIn"></menu-principal>
+<mensagem-sistem [mensagem]="globalMensagem"></mensagem-sistem>
+<div id="tudo body-contet" (userLoggedIn)="userLoggedInEmitter($event)">
+
+  <div>
+
+    <div id="tudo2" class="filter-border">
+
+      <div class="card-login">
+
+        <div class="card-login-header">
+          <h1>
+            Autenticação
+          </h1>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="card-login-content">
+          <form>
+            <mat-form-field class="input-display-login">
+              <input matInput placeholder="E-mail" maxlength="100" [(ngModel)]="userAuth.email" name="userAuthEmail" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-display-login">
+              <input matInput type="password" placeholder="Senha" maxlength="12" [(ngModel)]="userAuth.password" name="userAuthPassWord" required>
+            </mat-form-field>
+
+            <br>
+            <br>
+
+            <div class="card-log-actions">
+              <button mat-raised-button primary color="primary" (click)="onLogin(userAuth)">
+                <mat-icon>sender</mat-icon>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+
+
+        <br>
+        <br>
+
+        <mat-divider></mat-divider>
+
+        <br>
+
+        <div class="login-links">
+          <a href="" routerLink="/recuperarSenha">
+            <h4>Esqueceu sua senha?</h4>
+          </a>
+        </div>
+
+        <div class="login-links">
+          <a href="" routerLink="/myProfile">
+            <h4>Novo cadastro!</h4>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

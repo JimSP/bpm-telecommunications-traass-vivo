@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: vt-user-ms-repository-entity
+Implementation-Version: 0.0.1
+Built-By: lucasmantovani
+Implementation-Vendor-Id: br.com.interfile.vivo.traass
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/vt-ms-soluction/vt-user-ms-repository-entity
+Created-By: Maven Integration for Eclipse
+

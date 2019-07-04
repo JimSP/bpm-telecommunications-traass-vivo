@@ -1,0 +1,12 @@
+package ${packageName}.jpa.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import ${packageName}.jpa.entities.${domainClass}Entity;
+
+@Repository
+public interface ${domainClass}JpaRepository extends JpaRepository<${domainClass}Entity, Long> {
+
+}

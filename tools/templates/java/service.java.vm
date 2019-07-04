@@ -1,0 +1,27 @@
+package ${packageName}.jpa.services;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+import ${packageName}.domain.${domainClass};
+import ${packageName}.jpa.entities.${domainClass}Entity;
+import ${packageName}.jpa.repositories.${domainClass}JpaRepository;
+
+@Component
+public class ${domainClass}Service {
+
+	@Autowired
+	private ${domainClass}JpaRepository jpaRepository;
+
+	@Autowired
+	public ModelMapper modelMapper;
+
+/*
+	public Optional<${domainClass}> methodName(final ${domainClass} domain) {
+		return Optional.of(modelMapper.map(jpaRepository.findById(domain.getId()), ${domainClass}.class));
+	}
+*/
+}

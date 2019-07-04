@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'br.com.lcc'
+version = '0.0.1'
+
+dependencies {
+	compile group: 'org.springframework', name: 'spring-core', version: '5.0.6.RELEASE'
+	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.6.RELEASE'
+	compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
+	compile group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
+	
+	compile project (':lcc-rest-dto')
+	
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+}
